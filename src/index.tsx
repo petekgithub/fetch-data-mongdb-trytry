@@ -1,12 +1,18 @@
 //import "./Core/styles/main.scss";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./Auth/pages/Register";
 
-ReactDOM.render(
-  <BrowserRouter>
-    <div id="modalContainer" />
-      <h1>HEeeeY!</h1>
-  </BrowserRouter>,
-  document.getElementById("root")
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Register/>} />
+      </Routes>
+    </BrowserRouter>
+  </React.StrictMode>
 );
+
