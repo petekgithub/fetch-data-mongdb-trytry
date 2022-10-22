@@ -3,12 +3,120 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const REGISTER_URL = '/register';
+
+
 const Register: React.FC = () => {
+
+  /* for user input */
+   const userRef = useRef();
+  /* for error reference */
+   const errRef = useRef();
+
+  /* user state and this will be tied to the user input */
+  const [user, setUser] = useState('');
+  /* this is boolean which means this is valid name or not. */
+  const [validName, setValidName] = useState(false);
+  /* we have focus on input field or not */
+  const [userFocus, setUserFocus] = useState(false);
+
+  /* states for the pass field*/
+  const [pwd, setPwd] = useState('');
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+
+  /* states for the pass match field*/
+  const [matchPwd, setMatchPwd] = useState('');
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setmatchFocus] = useState(false);
+
+  /*state for possible error msg*/
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+
+    // focus components loads and username input
+  // useEffect(() => {
+  //   userRef.current.focus();
+  // }, []);
+
   return (
     <section>
-      <h1>
-        Register part
-      </h1>
+      <p 
+        //ref={errRef}
+        className={errMsg ? "errmsg" : "offscreen"}
+        aria-live="assertive"
+      >
+      {errMsg}</p>
+      <h1>Register</h1>
+      <form>
+        <label htmlFor="username">
+          Username: 
+          <span className={validName ? "valid" : "hide"}> 
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validName || !user ? "hide" : "invalid"}> 
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+        </label>
+        <input 
+          type="text"
+          id="username"
+          // ref={userRef}
+          autoComplete = "off"
+          onChange={(e)=> setUser(e.target.value)}
+          required
+          aria-invalid={validName ? "false" : "true"}        
+          aria-describedby="uidnote"
+          onFocus={() => setUserFocus(true)}
+          onBlur={() => setUserFocus(false)}
+        />
+        <p
+          id="uidnote"
+          className={userFocus && user && !validName ? "instructions" : "offscreen"}
+        >
+        <FontAwesomeIcon icon={faInfoCircle } />
+          4 to 24 characters. <br />
+          Must begin with a letter. <br />
+          Letters, numbers, underscores, hyphens allowed.
+        </p>
+
+        <label htmlFor="username">
+          Password: 
+          <span className={validPwd ? "valid" : "hide"}> 
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validPwd || !pwd ? "hide" : "invalid"}> 
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+        </label>
+        <input 
+          type="password"
+          id="password"
+          onChange={(e)=> setPwd(e.target.value)}
+          required
+          aria-invalid={validPwd ? "false" : "true"}        
+          aria-describedby="pwdnote"
+          onFocus={() => setPwdFocus(true)}
+          onBlur={() => setPwdFocus(false)}
+        />
+        <p
+          id="pwdnote"
+          className={pwdFocus && user && !validPwd ? "instructions" : "offscreen"}
+        >
+        <FontAwesomeIcon icon={faInfoCircle } />
+          8 to 24 characters. <br />
+          Must include uppercase and lowercase letters, a number and a special character. <br />
+          Allowed special characters: 
+            <span aria-label="exclamation mark">!</span>
+            <span aria-label="at symbol">@</span>
+            <span aria-label="hashtag">#</span>
+            <span aria-label="dollar sign">$</span>
+            <span aria-label="percent">%</span>
+        </p>
+      </form>
     </section>
   )
 }
