@@ -5,16 +5,22 @@ import Home from "Screens/Home";
 import DetailView from "Screens/DetailView";
 import ListView from "Screens/ListView";
 import Register from 'Auth/pages/Register';
+import Header from 'Core/components/Header';
+import Footer from 'Core/components/Footer';
 
 const Root: React.FC = () => {
   return (
-    <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/register' element={<Register/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/detailView' element={<DetailView/>} />
-        <Route path='/listView' element={<ListView/>} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/register' element={<Register/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/detailview' element={<DetailView/>} />
+          <Route path='/listview' element={<ListView/>} />
+      </Routes>
+      <Footer />
+    </>
   );
 };
 

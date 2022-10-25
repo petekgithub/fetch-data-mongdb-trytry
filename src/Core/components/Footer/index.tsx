@@ -1,10 +1,11 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from "react";
 import styles from "./styles.module.scss";
 
 
 const Footer: React.FC = () => {
   return (
     <footer className= {styles.container}>
+      <h1>Footer</h1>
       <div className={styles.content}>
         <div className={styles.innerContent}>
           <div className={styles.col}>
@@ -18,11 +19,7 @@ const Footer: React.FC = () => {
           <div className={styles.col}>
             <h4>Links</h4>
             <a>Home</a>
-            <a>About Us</a>
-            <a>Bookings</a>
-            <a>Blog</a>
           </div>
-
         </div>
         <div className={styles.copyright}>Copyright 2022 uifry.com all rights reserved</div> 
       </div>

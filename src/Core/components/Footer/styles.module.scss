@@ -1,7 +1,8 @@
+@import "Core/styles/index.scss";
+
 .container {
 
   .content {
-    @include content(); 
 
     .innerContent {
       @include flex(null,space-between);
@@ -36,8 +37,6 @@
     } 
 
     .copyright {
-
-      // copyright kısmı üstten ince çizgi içim,
       border-top  : 1px solid;
       text-align  : center;
       padding     : 40px 0;
