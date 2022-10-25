@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "api/axios";
-import './_styles.module.scss';
+import styles from "./styles.module.scss";
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -17,7 +17,7 @@ const Register: React.FC = () => {
   /* for user input */
    const userRef = useRef<HTMLInputElement>(null);
   /* for error reference */
-   const errRef = useRef();
+   const errRef = useRef<HTMLInputElement>(null);
 
   /* user state and this will be tied to the user input */
   const [user, setUser] = useState('');
@@ -97,7 +97,7 @@ const Register: React.FC = () => {
       } else {
         setErrMsg('Registration Faied');
       }
-      userRef?.current?.focus();
+      errRef?.current?.focus();
     }
 }
 
@@ -113,8 +113,8 @@ const Register: React.FC = () => {
       ) : (
     <section>
     <p 
-      //ref={errRef}
-      className={errMsg ? "errmsg" : "offscreen"}
+      ref={errRef}
+      className={`${errMsg ? styles.errmsg : styles.offscreen}`}
       aria-live="assertive"
     >
     {errMsg}</p>
