@@ -1,0 +1,47 @@
+.container {
+
+  .content {
+    @include content(); 
+
+    .innerContent {
+      @include flex(null,space-between);
+
+      .col {
+        @include flex(null, null, column);
+
+        a {
+          margin-top   : 16px;
+        }
+
+        h4 {
+          font-size    : 32px;
+        }
+
+        .inputContainer {
+          margin-top   : 16px;
+          border-radius: 4px;
+          padding      : 10px;
+          background   : #ffff;
+          box-shadow   : -13.011px 13.0111px 104.089px rgba(0, 0, 0, 0.2);
+          
+
+          input{
+            font-weight : 500;
+            font-size   : 16px;
+            border      : none;
+            outline     : none;
+          }
+        }
+      }
+    } 
+
+    .copyright {
+
+      // copyright kısmı üstten ince çizgi içim,
+      border-top  : 1px solid;
+      text-align  : center;
+      padding     : 40px 0;
+      @include responsive(padding, 40px 0, 20px 0);
+    }
+  }
+}

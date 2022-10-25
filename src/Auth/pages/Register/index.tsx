@@ -47,7 +47,7 @@ const Register: React.FC = () => {
 
     /*validate the user name */
     useEffect(() => {
-      const result = (USER_REGEX.test(user));
+      const result = USER_REGEX.test(user);
       console.log(result);
       console.log(user);
       setValidName(result);
@@ -126,7 +126,7 @@ const Register: React.FC = () => {
           <FontAwesomeIcon icon={faCheck} />
         </span>
         <span className={`${validName || !user ? styles.hide : styles.invalid}`}> 
-          <FontAwesomeIcon icon={faTimes} />
+          <FontAwesomeIcon style={{color: `red`}} icon={faTimes} />
         </span>
       </label>
       <input 

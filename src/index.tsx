@@ -1,18 +1,12 @@
-import "./Core/styles/main.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Register from "./Auth/pages/Register";
+import React from 'react';
+import Root from "./Root";
+import "Core/styles/main.scss";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-const root = ReactDOM.createRoot(document.getElementById("root")!);
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Register/>} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>
+ReactDOM.render(
+  <BrowserRouter>
+    <Root />
+  </BrowserRouter>,
+  document.getElementById("root")
 );
-
