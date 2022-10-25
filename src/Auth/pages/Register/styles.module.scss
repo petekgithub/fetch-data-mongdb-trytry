@@ -32,11 +32,9 @@ section {
 
 
 form {
-    @include flex(center, flex-start, space-evenly );
-    display       : flex;
+    @include flex(null, space-evenly, column );
     flex-grow     : 1;
     padding-bottom: 1rem;
-
 
 a, a:visited {
   color  : $color-white;
