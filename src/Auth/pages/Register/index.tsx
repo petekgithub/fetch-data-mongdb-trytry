@@ -2,16 +2,20 @@ import React from "react";
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "api/axios";
+import './_styles.module.scss';
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
+// end pointfor registration in our backend api
+const REGISTER_URL = '/register';
 
 const Register: React.FC = () => {
 
   /* for user input */
-   const userRef = useRef();
+   const userRef = useRef<HTMLInputElement>(null);
   /* for error reference */
    const errRef = useRef();
 
@@ -36,14 +40,36 @@ const Register: React.FC = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
-    // focus components loads and username input
-  // useEffect(() => {
-  //   userRef.current.focus();
-  // }, []);
+  // focus components loads and username input
+    useEffect(() => {
+     userRef?.current?.focus();
+    }, []);
+
+    /*validate the user name */
+    useEffect(() => {
+      const result = (USER_REGEX.test(user));
+      console.log(result);
+      console.log(user);
+      setValidName(result);
+    }, [user]);
+  
+    /*useEffect for the password */
+  useEffect(() => {
+    const result = (PWD_REGEX.test(pwd));
+    console.log(result);
+    console.log(pwd);
+    setValidPwd(result);
+    //compare valid match or not
+      setValidMatch(pwd === matchPwd);
+  }, [pwd, matchPwd]);
+
+  /* useEffect for error message*/
+  useEffect(() => {
+      setErrMsg('');
+  }, [user, pwd, matchPwd]);
 
 
-
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     // if button enabled with JS hack
     const v1 = USER_REGEX.test(user);
@@ -52,10 +78,39 @@ const Register: React.FC = () => {
       setErrMsg("Invalid Entry");
       return;
     }
-   console.log(user, pwd);
+    try {
+      const response = await axios.post(REGISTER_URL, 
+        JSON.stringify({ user, pwd }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }
+      );
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+      // clear input fields
+    } catch (err:any) {
+      if (!err?.response) {
+          setErrMsg('No Server Response');
+      } else if (err.response?.status === 409) {
+         setErrMsg('Username Taken');
+      } else {
+        setErrMsg('Registration Faied');
+      }
+      userRef?.current?.focus();
+    }
 }
 
   return (
+    <>
+      {success ? (
+        <section>
+          <h1>Success!</h1>
+          <p>
+            <a href="#">Sign In</a>
+          </p>
+        </section>
+      ) : (
     <section>
     <p 
       //ref={errRef}
@@ -77,7 +132,7 @@ const Register: React.FC = () => {
       <input 
         type="text"
         id="username"
-       // ref={userRef}
+        ref={userRef}
         autoComplete = "off"
         onChange={(e)=> setUser(e.target.value)}
         required
@@ -168,7 +223,9 @@ const Register: React.FC = () => {
         <a href="#">Sign In</a>
       </span>
     </p>
-  </section>     
+    </section>     
+    )}    
+    </>
   )
 }
 
