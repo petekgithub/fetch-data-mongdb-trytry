@@ -1,31 +1,34 @@
 @import "Core/styles/index.scss";
 
-.footer {
-  width          : 100%;
-  height         : 200px;
-  background     : #1E1E22;
-  display        : flex;
-  justify-content: center;
-  align-items    : center;
-  flex-direction : column;
-  padding-top    : 10px;
-  margin-top     : 200px;
-}
+.container {
+   background-color     : $color-ice;
 
-.socialMedia svg {
-  color       : white;
-  margin      : 20px;
-  font-size   : 70px;
-  cursor      : pointer;
-}
+    .content {
+      //@include content(1180px, 904px, 100%);
+      @include flex( center, center, column );
+      width          : 100%;
+      //height         : 100px;
+      min-height     : 100vh;
+      padding-top    : 10px;
+      margin-top     : 200px;
 
-.footer p {
-  color   : white;
-}
 
-    .copyright {
-      border-top  : 1px solid;
-      text-align  : center;
-      padding     : 40px 0;
-      @include responsive(padding, 40px 0, 20px 0);
-    }
+      .socialMedia svg {
+        color       : $color-black;
+        margin      : 20px;
+        font-size   : 40px;
+        cursor      : pointer;
+
+        :hover {
+        color       : $color-sky;
+
+        }
+      }
+  }
+  .copyright {
+    border-top : 1px solid $color-black;
+    font-weight: 400;
+    text-align : center;
+    color      : rgba($color-black, 0.6);
+  }
+}
