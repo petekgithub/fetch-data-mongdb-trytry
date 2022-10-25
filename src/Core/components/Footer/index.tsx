@@ -1,29 +1,29 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import InstagramIcon from "@material-ui/icons/Instagram";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 
 
 const Footer: React.FC = () => {
   return (
-    <footer className= {styles.container}>
-      <h1>Footer</h1>
-      <div className={styles.content}>
-        <div className={styles.innerContent}>
-          <div className={styles.col}>
-            <a href="mailto:help@frybix.com">
-              help@frybix.com
-            </a>
-            <a href="+1 234 456 678 89">
-              +1 234 456 678 89
-            </a>
-          </div>
-          <div className={styles.col}>
-            <h4>Links</h4>
-            <a>Home</a>
-          </div>
-        </div>
-        <div className={styles.copyright}>Copyright 2022 uifry.com all rights reserved</div> 
-      </div>
-    </footer>
+    <div className="footer">
+    <div className="socialMedia">
+      <a href="https://www.instagram.com/ptkqt/">
+        <InstagramIcon />
+      </a>
+      <a href="https://twitter.com/Petekqt1">
+        <TwitterIcon />
+      </a>
+      <a href="https://github.com/petekgithub">
+        <GitHubIcon />
+      </a>
+      <a href="https://www.linkedin.com/in/petek-savas-hamitbeyli/">
+        <LinkedInIcon />
+      </a>
+    </div>
+    <p> &copy; 2022 Made by Petek.</p>
+  </div>
   )
 }
 
