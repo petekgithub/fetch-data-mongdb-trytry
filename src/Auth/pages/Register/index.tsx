@@ -122,10 +122,10 @@ const Register: React.FC = () => {
     <form onSubmit={handleSubmit}>
       <label htmlFor="username">
         Username: 
-        <span className={validName ? "valid" : "hide"}> 
+        <span className={`${validName ? styles.valid : styles.hide}`}> 
           <FontAwesomeIcon icon={faCheck} />
         </span>
-        <span className={validName || !user ? "hide" : "invalid"}> 
+        <span className={`${validName || !user ? styles.hide : styles.invalid}`}> 
           <FontAwesomeIcon icon={faTimes} />
         </span>
       </label>
@@ -143,7 +143,7 @@ const Register: React.FC = () => {
       />
       <p
         id="uidnote"
-        className={userFocus && user && !validName ? "instructions" : "offscreen"}
+        className={`${userFocus && user && !validName ? styles.instructions : styles.offscreen}`}
       >
       <FontAwesomeIcon icon={faInfoCircle } />
         4 to 24 characters. <br />
@@ -153,10 +153,10 @@ const Register: React.FC = () => {
 
       <label htmlFor="password">
         Password: 
-        <span className={validPwd ? "valid" : "hide"}> 
+        <span className={`${validPwd ? styles.valid : styles.hide}`}> 
           <FontAwesomeIcon icon={faCheck} />
         </span>
-        <span className={validPwd || !pwd ? "hide" : "invalid"}> 
+        <span className={`${validPwd || !pwd ? styles.hide : styles.invalid}`}> 
           <FontAwesomeIcon icon={faTimes} />
         </span>
       </label>
@@ -172,7 +172,7 @@ const Register: React.FC = () => {
       />
       <p
         id="pwdnote"
-        className={pwdFocus && user && !validPwd ? "instructions" : "offscreen"}
+        className={`${pwdFocus && user && !validPwd ? styles.instructions : styles.offscreen}`}
       >
       <FontAwesomeIcon icon={faInfoCircle } />
         8 to 24 characters. <br />
@@ -187,10 +187,10 @@ const Register: React.FC = () => {
 
       <label htmlFor="confirm_pwd">
         Confirm Password: 
-        <span className={validMatch && matchPwd ?  "valid" : "hide"}> 
+        <span className={`${validMatch && matchPwd ?  styles.valid : styles.hide}`}> 
           <FontAwesomeIcon icon={faCheck} />
         </span>
-        <span className={validMatch || !validMatch ? "hide" : "invalid"}> 
+        <span className={`${validMatch || !validMatch ? styles.hide : styles.invalid}`}> 
           <FontAwesomeIcon icon={faTimes} />
         </span>
       </label>
@@ -205,24 +205,24 @@ const Register: React.FC = () => {
         onBlur={() => setMatchFocus(false)}
       />
       <p
-        id="confirmnote"
-        className={matchFocus && user && !validPwd ? "instructions" : "offscreen"}
-      >
-      <FontAwesomeIcon icon={faInfoCircle } />
-       Must match the first password input field.
+          id="confirmnote"
+          className={`${matchFocus && user && !validPwd ? styles.instructions : styles.offscreen}`}
+        >
+        <FontAwesomeIcon icon={faInfoCircle } />
+         Must match the first password input field.
+        </p>
+        <button
+          disabled={!validName || !validPwd || !validMatch ? true : false}
+        >
+        Sign Up</button>
+      </form>
+      <p>
+        Already registered?<br />
+        <span className={styles.line}>
+          {/*put router link here */}
+          <a href="#">Sign In</a>
+        </span>
       </p>
-      <button
-        disabled={!validName || !validPwd || !validMatch ? true : false}
-      >
-      Sign Up</button>
-    </form>
-    <p>
-      Already registered?<br />
-      <span className="line">
-        {/*put router link here */}
-        <a href="#">Sign In</a>
-      </span>
-    </p>
     </section>     
     )}    
     </>
