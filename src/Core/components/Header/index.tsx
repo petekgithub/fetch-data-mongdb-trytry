@@ -8,10 +8,12 @@ const Header: React.FC = () => {
     <header className={styles.container}>
       <div className= {styles.content}>
         <div className={styles.logo}>
-        <img src={Logo} alt="ReliefScout" />
+          <img src={Logo} alt="ReliefScout" />
         </div> 
-        <button>Log In</button>
-        <button>Sign Up</button>
+        <div className={styles.buttons}>
+          <button>Log In</button>
+          <button>Sign Up</button>
+        </div>
       </div>
     </header>
   );

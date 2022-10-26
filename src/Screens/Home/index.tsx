@@ -1,15 +1,14 @@
-import React from 'react';
-import Footer from 'Core/components/Footer';
-import Header from 'Core/components/Header';
+import React from "react";
+import styles from "./styles.module.scss";
+
 
 const Home = () => {
   return (
-    <div>
-      {/* <Header /> */}
-      <h1>Welcome !!</h1>
-      {/* <Footer /> */}
+    <div className={styles.home}>
+      <div className={styles.content}>
+        <h2>Welcome for Testing !!</h2>
+      </div>
     </div>
-  )
-}
-
+  );
+};
 export default Home;

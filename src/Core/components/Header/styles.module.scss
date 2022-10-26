@@ -6,12 +6,13 @@
   @include fixed(0,0,null,0);
   padding: 10px;
   margin-bottom: 0;
+  border-bottom: 2px solid black;
 
   .content {
     transition: all .2s;
     @include flex(center);
 
-    button {
+    .buttons {
       color             : $color-white;  
       padding           : 16px 46px;
       margin-left       : auto;
