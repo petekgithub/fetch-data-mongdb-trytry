@@ -12,13 +12,15 @@ const Root: React.FC = () => {
   return (
     <>
       <Header />
-    <Routes>
+      <div style={{ height:"calc(100vh - 230px)", marginTop: 100}}>
+      <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register/>} />
         <Route path='/login' element={<Login />} />
         <Route path='/detailview' element={<DetailView/>} />
         <Route path='/listview' element={<ListView/>} />
     </Routes>
+      </div>    
     <Footer />
     </>
 

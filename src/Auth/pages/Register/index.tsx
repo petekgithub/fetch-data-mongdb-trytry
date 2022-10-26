@@ -4,6 +4,8 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "api/axios";
 import styles from "./styles.module.scss";
+import { Link } from "react-router-dom";
+
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -220,7 +222,8 @@ const Register: React.FC = () => {
         Already registered?<br />
         <span className={styles.line}>
           {/*put router link here */}
-          <a href="#">Sign In</a>
+          <Link to="/login">Sign In</Link>
+      
         </span>
       </p>
     </section>     

@@ -1,9 +1,11 @@
 import React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import styles from "./styles.module.scss";
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
+  const navigate = useNavigate();
   /* userRef, set the focus first input when the components loads*/
   /* errRef, set the focuson the errors expecially scren reader for a read*/
   const userRef = useRef<HTMLInputElement>(null);
@@ -36,32 +38,19 @@ const Login = () => {
    */
 
     //e.preventDefault() - to prevent the default behaviour of the form which would reaload the page
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(user,pwd);
-        setUser('');
-        setPwd('');
-        setSuccess(true);
+        return navigate('/listview');
     }
 
 
-
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href="/listview">Go to Home</a>
-          </p>
-        </section>
-      ) : (
     <section>
       <p 
-      ref={errRef} className={`${errMsg ? styles.errmsg : styles.offscreen}`}
-      aria-live="assertive">
-      {errMsg}</p>
+        ref={errRef} className={`${errMsg ? styles.errmsg : styles.offscreen}`}
+        aria-live="assertive">
+        {errMsg}
+      </p>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
@@ -82,18 +71,17 @@ const Login = () => {
           value={pwd} 
           required
         />
-        <button>Log In</button>
+        <button type='submit'>Log In</button>
       </form>
       <p>
         Need an account?<br />
         <span className={styles.line}>
           {/*put router link here */}
-          <a href="/register">Sing Up</a>
+          <Link to="/register">Sing Up</Link>
         </span>
       </p>
     </section>
-    )}
-  </>
+
   );
 }
 
