@@ -41,7 +41,7 @@ const Login = () => {
       ref={errRef} className={`${errMsg ? styles.errmsg : styles.offscreen}`}
       aria-live="assertive">
       {errMsg}</p>
-      <h1>Sign In</h1>
+      <h1>Log In</h1>
       <form>
         <label htmlFor="username">Username:</label>
         <input
@@ -53,7 +53,23 @@ const Login = () => {
           value={user} 
           required
         />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password" 
+          id="password"
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd} 
+          required
+        />
+        <button>Log In</button>
       </form>
+      <p>
+        Need an account?<br />
+        <span className={styles.line}>
+          {/*put router link here */}
+          <a href="#">Sing Up</a>
+        </span>
+      </p>
     </section>
   );
 }
