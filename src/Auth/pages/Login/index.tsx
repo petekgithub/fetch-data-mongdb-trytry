@@ -35,14 +35,35 @@ const Login = () => {
     if you're going to clear the inputs upon submission
    */
 
+    //e.preventDefault() - to prevent the default behaviour of the form which would reaload the page
+    const handleSubmit = async (e:any) => {
+        e.preventDefault();
+        console.log(user,pwd);
+        setUser('');
+        setPwd('');
+        setSuccess(true);
+    }
+
+
+
   return (
+    <>
+      {success ? (
+        <section>
+          <h1>You are logged in!</h1>
+          <br />
+          <p>
+            <a href="/listview">Go to Home</a>
+          </p>
+        </section>
+      ) : (
     <section>
       <p 
       ref={errRef} className={`${errMsg ? styles.errmsg : styles.offscreen}`}
       aria-live="assertive">
       {errMsg}</p>
       <h1>Log In</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
           type="text" 
@@ -67,10 +88,12 @@ const Login = () => {
         Need an account?<br />
         <span className={styles.line}>
           {/*put router link here */}
-          <a href="#">Sing Up</a>
+          <a href="/register">Sing Up</a>
         </span>
       </p>
     </section>
+    )}
+  </>
   );
 }
 
