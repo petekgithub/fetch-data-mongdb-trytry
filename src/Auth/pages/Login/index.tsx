@@ -30,6 +30,11 @@ const Login = () => {
   },[user,pwd]);
 
 
+  /*
+    value={user}- user state in here, this makes this controlled input 
+    if you're going to clear the inputs upon submission
+   */
+
   return (
     <section>
       <p 
@@ -37,6 +42,18 @@ const Login = () => {
       aria-live="assertive">
       {errMsg}</p>
       <h1>Sign In</h1>
+      <form>
+        <label htmlFor="username">Username:</label>
+        <input
+          type="text" 
+          id="username"
+          ref={userRef}
+          autoComplete="off"
+          onChange={(e) => setUser(e.target.value)}
+          value={user} 
+          required
+        />
+      </form>
     </section>
   );
 }
