@@ -12,7 +12,7 @@ const Root: React.FC = () => {
   return (
     <>
       <Header />
-      <div style={{ height:"calc(100vh - 230px)", marginTop: 100}}>
+      <div style={{ height:"calc(100vh - 230px)", marginTop: 100,display: "flex", alignItems: "center", justifyContent: "center",}}>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Register/>} />
@@ -23,7 +23,6 @@ const Root: React.FC = () => {
       </div>    
     <Footer />
     </>
-
   );
 };
 
