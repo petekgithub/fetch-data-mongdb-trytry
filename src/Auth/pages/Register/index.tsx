@@ -4,8 +4,7 @@ import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "api/axios";
 import styles from "./styles.module.scss";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
@@ -15,6 +14,8 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
 
 const Register: React.FC = () => {
+
+  const navigate = useNavigate();
 
   /* for user input */
    const userRef = useRef<HTMLInputElement>(null);
@@ -71,8 +72,9 @@ const Register: React.FC = () => {
   }, [user, pwd, matchPwd]);
 
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     // if button enabled with JS hack
     const v1 = USER_REGEX.test(user);
     const v2 = PWD_REGEX.test(pwd);
@@ -80,6 +82,7 @@ const Register: React.FC = () => {
       setErrMsg("Invalid Entry");
       return;
     }
+
     try {
       const response = await axios.post(REGISTER_URL, 
         JSON.stringify({ user, pwd }),
@@ -91,6 +94,8 @@ const Register: React.FC = () => {
       console.log(JSON.stringify(response));
       setSuccess(true);
       // clear input fields
+      // navigate to listview page
+      navigate('/listview');
     } catch (err:any) {
       if (!err?.response) {
           setErrMsg('No Server Response');
@@ -101,7 +106,7 @@ const Register: React.FC = () => {
       }
       errRef?.current?.focus();
     }
-}
+  }
 
   return (
     <>
@@ -215,6 +220,7 @@ const Register: React.FC = () => {
         </p>
         <button
           disabled={!validName || !validPwd || !validMatch ? true : false}
+          type="submit"
         >
         Sign Up</button>
       </form>
@@ -223,7 +229,6 @@ const Register: React.FC = () => {
         <span className={styles.line}>
           {/*put router link here */}
           <Link to="/login">Sign In</Link>
-      
         </span>
       </p>
     </section>     
@@ -231,5 +236,6 @@ const Register: React.FC = () => {
     </>
   )
 }
+
 
 export default Register;
