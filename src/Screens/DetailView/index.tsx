@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import styles from "./styles.module.scss";
 
-const DetailView = () => {
+
+const DetailView: React.FC = () => {
   return (
-    <div>DetailView</div>
+    <div className={styles.container}>
+      <h1>DetailView</h1>
+      <p>Update parts will be here !!</p>
+    </div>
   )
 }
 

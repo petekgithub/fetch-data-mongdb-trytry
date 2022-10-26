@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import styles from './style.module.scss';
 
-const ListView = () => {
+
+const ListView: React.FC = () => {
   return (
-    <div>ListView</div>
+    <div className={styles.container}>
+      <h1>ListView</h1>
+      <p>Search part and Fetch datas from db and show them here !!</p>
+    </div>
   )
 }
 

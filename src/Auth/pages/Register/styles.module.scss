@@ -25,7 +25,7 @@ section {
     max-width       : 420px;
     min-height      : 400px;
     padding         : 1rem;
-    background-color: $primary-color;
+    background-color: $color-firebrick;
     font-family     : $font-family;
     font-size       : 22px;
     color           : $color-white;
@@ -59,7 +59,7 @@ form {
     }
 
     .valid {
-        color      : $color-limegreen;
+        color      : $color-firebrick;
         margin-left: 0.25rem;
     }
     }

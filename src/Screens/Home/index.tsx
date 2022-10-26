@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <div className={styles.home}>
       <div className={styles.content}>
