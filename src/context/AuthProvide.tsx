@@ -1,8 +1,11 @@
 import React, { createContext, useState } from "react";
-
 const AuthContext = createContext({}); 
 
-const AuthProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const AuthProvider: React.FC<Props> = ({children}) => {
   const [ auth, setAuth ] = useState({});
 
   return (
