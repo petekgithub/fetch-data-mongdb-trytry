@@ -1,0 +1,54 @@
+@import "Core/styles/index.scss";
+
+section {
+    @include flex(center, flex-start, column );
+    @include content(500px);
+    width           : 100%;
+    max-width       : 420px;
+    min-height      : 400px;
+    padding         : 1rem;
+    background-color: $color-white;
+    font-family     : $font-family;
+    font-size       : 22px;
+    color           : $color-black;
+
+
+    form {
+        @include flex(null, space-evenly, column );
+        flex-grow     : 1;
+        padding-bottom: 1rem;
+
+
+        input[type="text"],
+        input[type="password"],
+
+        textarea {
+            font-family  : $font-family;
+            font-size    : 25px;
+            padding      : 0.25rem;
+            border-radius: 0.5rem;
+        }
+
+        label {
+            margin-top: .5rem;   
+        }
+
+       
+    }
+    .logInBtn {
+        padding         : 1rem;
+        width           : 400px; 
+        height          : 40px;
+        border          : none;
+        background-color: $color-green;
+        color           : $color-black;
+        font-weight     : bold;
+        cursor          : pointer;
+    }
+
+    span {
+        font-size: 12px;
+        color: $color-red;
+        margin-top: 10px;
+    }
+}

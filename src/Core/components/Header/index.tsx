@@ -12,6 +12,8 @@ const Header: React.FC = () => {
   const { pathname } = useLocation();
   console.log("location", location);
 
+  //Here useMemo is same as useEffect, whenever dependency array value changes the code inside that function will run and returned value will be stored in that variable called isLoggedIn  
+  //Inside that function we are checking in which route we are currently, if we are in listView or detailsView we have to make that login button as logout  
   const isLoggedIn = useMemo(() => {
     if (["/listview", "/detailsview"].includes(pathname)) return true;
     else return false; 
@@ -21,7 +23,7 @@ const Header: React.FC = () => {
     <header className={styles.container}>
       <div className= {styles.content}>
         <div className={styles.left}>
-          <img src={Logo} alt="ReliefScout" />
+          <Link to="/"><img src={Logo} alt="ReliefScout" /></Link>
         </div> 
         <div className={styles.right}>
           {isLoggedIn ? (
@@ -29,7 +31,6 @@ const Header: React.FC = () => {
           ) : (
             <>
             <Link to="/login"><Button className={styles.logInBtn}>Log In</Button></Link>
-            <Link to="/register"><Button className={styles.signUpBtn}>Sign Up</Button></Link>
             </>
           )}
         </div>
