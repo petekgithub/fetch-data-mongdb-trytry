@@ -5,6 +5,7 @@ interface ContextProps {
   setAuth: React.Dispatch<React.SetStateAction<any>>;
 };
 
+//Partial is like typescript utility class which makes all the values in object as optional
 const AuthContext = createContext<Partial<ContextProps>>({ auth: '' });
 
 interface Props {

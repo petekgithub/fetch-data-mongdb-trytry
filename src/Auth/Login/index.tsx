@@ -1,10 +1,13 @@
-import React from 'react';
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from 'context/AuthProvider';
-import styles from "./styles.module.scss";
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from "@material-ui/core";
+import { useContext, useEffect, useRef, useState } from 'react';
 
+import AuthContext from 'context/AuthProvider';
+import { Button } from "@material-ui/core";
+import React from 'react';
+import axios from 'api/axios';
+import styles from "./styles.module.scss";
+
+const LOGIN_URL = '/auth';
 
 const Login = () => {
   // if we succesfully authenticate when we loggin we'll set our new auth state and store it in the global context.
@@ -24,6 +27,34 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       return navigate('/listview');
+      try {
+        const response = await axios.post(
+          LOGIN_URL,
+          JSON.stringify({ user, pwd }),
+          {
+            headers: { 'Content-Type': 'application/json'},
+            withCredentials: true
+          }
+        );
+        console.log(JSON.stringify(response?.data));
+        console.log(JSON.stringify(response));
+        const accesToken = response?.data?.accessToken;
+        const roles = response?.data?.roles;
+        //setAuth({ user, pwd, roles, accesToken });
+        setUser('');
+        setPwd('');
+      } catch (error) {
+        // if (!error?.response) {
+        //   setError('No server response');
+        // } else if (error.response?.status === 400) {
+        //   setError('Missing Username or Password');
+        // } else if (error.response?.status === 400) {
+        //   setError('Unauthorized');
+        // }else {
+        //   setError('Login Failed');
+        // }
+      
+      }
   }
 
 
