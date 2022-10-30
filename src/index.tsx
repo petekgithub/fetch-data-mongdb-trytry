@@ -3,14 +3,21 @@ import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Root from "Root";
-import { AuthProvider } from "context/AuthProvider";
+//import { AuthProvider } from "context/AuthProvider";
+import { AuthProvider } from "react-auth-kit";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root")!);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
+      <AuthProvider
+        authType={"cookie"}
+        authName={"_auth"}
+        cookieDomain={window.location.hostname}
+        cookieSecure={false}
+       >
         <Root />
       </AuthProvider>
     </BrowserRouter>
