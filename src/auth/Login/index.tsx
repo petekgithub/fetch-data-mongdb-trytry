@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 //import AuthContext from 'context/AuthProvider';
 import { Button } from "@material-ui/core";
@@ -8,7 +8,6 @@ import axios, { AxiosError } from 'axios';
 import { useFormik } from 'formik';
 import { useSignIn } from 'react-auth-kit';
 
-// will check ! Need login check and see cookie on applicaiton !!
 
 const LOGIN_URL = "http://localhost:5000/login";
 
@@ -16,7 +15,6 @@ const Login = (props:any) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const signIn = useSignIn();
-  const [passwordType, setPasswordType] = useState("password");
 
   const handleSubmit = async (values: any) => {
       console.log("values", values);
@@ -27,13 +25,17 @@ const Login = (props:any) => {
           LOGIN_URL,
           values
         );
+        console.log("LOGIN_RESPONSE", response.data);
 
-        signIn({
+        if (signIn({
           token: response.data.token,
           expiresIn: 3600,
           tokenType: "Bearer",
           authState: { username: values.username },
-        });
+        })) 
+        {
+          navigate('/listview');
+        }
       } catch (err) {
         if (err && err instanceof AxiosError)
           setError(err.response?.data.message);
@@ -41,6 +43,7 @@ const Login = (props:any) => {
         console.log("Error :", err);
       }
   };
+  
 
   const formik = useFormik({
     initialValues: {
@@ -51,7 +54,6 @@ const Login = (props:any) => {
       alert(JSON.stringify(values, null, 2));
     },
   });
-
   
   return (
     <div className={styles.container}>
@@ -78,14 +80,12 @@ const Login = (props:any) => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          <Link to="/listview">
             <Button 
             className={styles.logInBtn} 
-            // // isLoading={formik.isSubmitting}
+            type="submit"
             >
             Log In
             </Button>
-          </Link>
         </form>
       </div>
     </div>
