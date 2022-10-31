@@ -21,10 +21,7 @@ const Login = (props:any) => {
       setError("");
 
       try {
-        const response = await axios.post(
-          LOGIN_URL,
-          values
-        );
+        const response = await axios.post(LOGIN_URL, values);
         console.log("LOGIN_RESPONSE", response.data);
 
         if (signIn({
@@ -34,7 +31,7 @@ const Login = (props:any) => {
           authState: { username: values.username },
         })) 
         {
-         // navigate('/listview');
+         navigate('/listview');
         }
       } catch (err) {
         if (err && err instanceof AxiosError)
@@ -50,10 +47,9 @@ const Login = (props:any) => {
       username: "",
       password: ""
     },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
-    },
+    onSubmit: handleSubmit
   });
+
   
   return (
     <div className={styles.container}>
@@ -61,7 +57,7 @@ const Login = (props:any) => {
       <br />
       <br />
       <div className={styles.innerContainer}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
         <label htmlFor="username">Username</label>
           <input
             id="username"
@@ -80,11 +76,8 @@ const Login = (props:any) => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-            <Button 
-            className={styles.logInBtn} 
-            type="submit"
-            >
-            Log In
+            <Button className={styles.logInBtn} type="submit">
+              Log In
             </Button>
         </form>
       </div>

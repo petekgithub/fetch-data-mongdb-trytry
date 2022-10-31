@@ -10,8 +10,6 @@ import DataTable from "react-data-table-component";
 import { Button } from "@material-ui/core";
 
 
-
-
 const ListView = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
