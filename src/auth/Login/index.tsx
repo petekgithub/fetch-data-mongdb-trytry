@@ -16,6 +16,7 @@ const Login = (props:any) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const signIn = useSignIn();
+  const [passwordType, setPasswordType] = useState("password");
 
   const handleSubmit = async (values: any) => {
       console.log("values", values);
@@ -54,6 +55,9 @@ const Login = (props:any) => {
   
   return (
     <div className={styles.container}>
+      <h1>WELCOME</h1>
+      <br />
+      <br />
       <div className={styles.innerContainer}>
         <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>

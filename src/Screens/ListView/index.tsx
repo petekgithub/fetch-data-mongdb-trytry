@@ -3,21 +3,17 @@ import Filter from './Filter';
 import styles from './style.module.scss';
 import { Button } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
-
-
+import SearchOutlined from '@ant-design/icons';
 
 const ListView: React.FC = () => {
 
 
   return (
     <div className={styles.container}>
-      <div className="d-flex a-center mb-10">
-        <div className="Title mr-20">
-          ListView
-        </div>
-        <Filter />
-        <Link to="/detailview"><Button className={styles.logInBtn}>DetailVİew</Button></Link>
-      </div>
+      <SearchOutlined style={{color:'red'}}/>
+      {/* <Filter /> */}
+
+      <Link to="/detailview"><Button className={styles.Btn}>DetailView</Button></Link>
     </div>
   );
 };

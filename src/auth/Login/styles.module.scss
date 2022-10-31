@@ -1,17 +1,22 @@
 @import "Core/styles/index.scss";
 
-container {
-    @include flex(center, flex-start, column);
+.container {
+    @include flex(center, center, column);
     @include content(500px);
-    width: 100%;
-    max-width: 420px;
-    min-height: 400px;
+    width: 40%;
+    height: 65%;
+    // max-width: 420px;
+    // min-height: 400px;
     padding: 1rem;
-    background-color: $color-white;
+    background-color: $color-black;
     font-family: $font-family;
     font-size: 22px;
-    color: $color-black;
+    color: $color-white;
 
+    h1 {
+        color: $color-athensGray;
+        font-size: 50px
+    }
 
     form {
         @include flex(null, space-evenly, column);
@@ -39,6 +44,7 @@ container {
         width: 400px;
         height: 40px;
         border: none;
+        margin-top: 20px;
         background-color: $color-green;
         color: $color-black;
         font-weight: bold;

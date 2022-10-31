@@ -1,10 +1,18 @@
 @import "Core/styles/index.scss";
-// this part will update!
+
 
 
 .container {
+    display: flex;
 
-  h1, p {
-    text-align: center;
-  }
+    .Btn {
+        width: 100px;
+        height: 40px;
+        color: $color-black;
+        border: 2px solid $color-black;
+        font-weight: bold;
+        cursor: pointer;
+        margin: 0 auto;
+        position: relative;
+    }
 }

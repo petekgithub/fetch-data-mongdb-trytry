@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "auth/Login";
 import DetailView from "Screens/DetailView";
 import ListView from "Screens/ListView";
+import { RequireAuth } from 'react-auth-kit';
 
 const Root: React.FC = () => {
   return (
