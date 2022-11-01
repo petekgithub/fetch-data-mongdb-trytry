@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from 'react-router';
 import { SearchOutlined, SyncOutlined } from '@ant-design/icons';
-import Filter from './Search';
+import {useAuthHeader} from 'react-auth-kit'
 import { message } from 'antd';
 import DetailView from 'Screens/DetailView';
 import axios from 'axios';
@@ -11,6 +11,8 @@ import { Button } from "@material-ui/core";
 
 
 const ListView = () => {
+
+
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,11 +21,16 @@ const ListView = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const fetchOrganisations = async (page:any, size = perPage) => {
-
     setLoading(true);
 
-    const response = await axios.get(
-      `http://localhost:5000/organisation?page=${page}&per_page=${size}&delay=1`
+    const response = await axios.post(
+      //`http://localhost:5000/organisations?page=${page}&per_page=${size}&delay=1`,
+      `http://localhost:5000/organisations/pagination`,
+    {
+      data: {
+        token: data,
+       }
+    }
     );
     setData(response.data.data);
     setTotalRows(response.data.total);

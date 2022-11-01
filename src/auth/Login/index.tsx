@@ -19,11 +19,10 @@ const Login = (props:any) => {
   const handleSubmit = async (values: any) => {
       console.log("values", values);
       setError("");
-
+//authState, infoof the user
       try {
         const response = await axios.post(LOGIN_URL, values);
         console.log("LOGIN_RESPONSE", response.data);
-
         if (signIn({
           token: response.data.token,
           expiresIn: 3600,
@@ -33,6 +32,7 @@ const Login = (props:any) => {
         {
          navigate('/listview');
         }
+        // react-auth-kit library: once responsde back, authentication is starts. Authenticate the user, save the credentials, save token, receive back login, 
       } catch (err) {
         if (err && err instanceof AxiosError)
           setError(err.response?.data.message);
