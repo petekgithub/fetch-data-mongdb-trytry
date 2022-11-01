@@ -3,16 +3,17 @@ import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from 'react-router';
 import { SearchOutlined, SyncOutlined } from '@ant-design/icons';
 import {useAuthHeader} from 'react-auth-kit'
-import { message } from 'antd';
+//import { message, Pagination } from 'antd';
 import DetailView from 'Screens/DetailView';
 import axios from 'axios';
 import DataTable from "react-data-table-component";
 import { Button } from "@material-ui/core";
+import Filter from './Filter';
+import styles from "./styles.module.scss";
+import Pagination from './Pagination';
 
 
 const ListView = () => {
-
-
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,26 +21,25 @@ const ListView = () => {
   const [perPage, setPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const fetchOrganisations = async (page:any, size = perPage) => {
-    setLoading(true);
+  // const fetchOrganisations = async (page:any, size = perPage) => {
+  //   setLoading(true);
+  //   const response = await axios.post(
+  //     //`http://localhost:5000/organisations?page=${page}&per_page=${size}&delay=1`,
+  //     `http://localhost:5000/organisations/pagination`,
+  //   {
+  //     data: {
+  //       token: data,
+  //      }
+  //   }
+  //   );
+  //   setData(response.data.data);
+  //   setTotalRows(response.data.total);
+  //   setLoading(false);
+  // };
 
-    const response = await axios.post(
-      //`http://localhost:5000/organisations?page=${page}&per_page=${size}&delay=1`,
-      `http://localhost:5000/organisations/pagination`,
-    {
-      data: {
-        token: data,
-       }
-    }
-    );
-    setData(response.data.data);
-    setTotalRows(response.data.total);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchOrganisations(1);
-  }, [])
+  // useEffect(() => {
+  //   fetchOrganisations(1);
+  // }, [])
   
   const columns = React.useMemo(
     () => [
@@ -59,27 +59,22 @@ const ListView = () => {
   []
   ) as any;
 
-  const handlePageChange = (page:any)=> {
-    fetchOrganisations(page);
-    setCurrentPage(page);
-  }
+  // const handlePageChange = (page:any)=> {
+  //   //fetchOrganisations(page);
+  //   setCurrentPage(page);
+  // }
 
-  const handlePerRowsChange = async (newPerPage:any, page:any)=> {
-    fetchOrganisations(page, newPerPage);
-    setPerPage(newPerPage);
-  }
+  // const handlePerRowsChange = async (newPerPage:any, page:any)=> {
+  //   //fetchOrganisations(page, newPerPage);
+  //   setPerPage(newPerPage);
+  // }
 
 
   return (
     <>
       {/* <Link to="/listview">
-            <Button 
-            className={styles.logInBtn} 
-            // // isLoading={formik.isSubmitting}
-            >
-            Log In
-            </Button>
-          </Link> */}
+            <Button className={styles.logInBtn}>DetailView</Button>
+      </Link> 
     <DataTable
       title="Organisations"
       columns={columns}
@@ -93,7 +88,9 @@ const ListView = () => {
       onChangePage={handlePageChange}
       selectableRows
       onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
-    />
+    /> */}
+    {/* <Filter /> */}
+    <Pagination />
     </>
     
   );

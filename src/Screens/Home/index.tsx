@@ -11,10 +11,16 @@ const Home = () => {
         navigate("/login");
     }
 
+    const login = () => {
+        navigate("/login");
+    }
+
     return (
         <div>
             <h1>Home</h1>
-            <button onClick={logout}>Logout</button>
+            <button onClick={login}>Log In</button>
+            <button onClick={logout}>Log Out</button>
+
         </div>
     )
 }
