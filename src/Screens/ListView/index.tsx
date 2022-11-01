@@ -22,11 +22,19 @@ const ListView = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   // const fetchOrganisations = async (page:any, size = perPage) => {
+
+//     const authHeader = useAuthHeader();
+
+// console.log("AUTH_HEADER: ", authHeader);
   //   setLoading(true);
   //   const response = await axios.post(
   //     //`http://localhost:5000/organisations?page=${page}&per_page=${size}&delay=1`,
   //     `http://localhost:5000/organisations/pagination`,
   //   {
+
+    // headers: {
+    //   Authorization: authHeader(),
+    //  }
   //     data: {
   //       token: data,
   //      }

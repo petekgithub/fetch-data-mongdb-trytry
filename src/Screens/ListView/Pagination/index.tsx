@@ -14,7 +14,8 @@ const Pagination = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);  // process on fetching
-            const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
+           const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
+            //const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
             setPosts(res.data);
             setLoading(false);
         }
