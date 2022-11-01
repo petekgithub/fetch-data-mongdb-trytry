@@ -14,7 +14,7 @@ const Pagination = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);  // process on fetching
-            const res = await axios.post('https://jsonplaceholder.typicode.com/posts');
+            const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
             setPosts(res.data);
             setLoading(false);
         }
