@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styles from "./styles.module.scss";
 
 
-
-const Pagination = () => {
+const Pagination: React.FC = () =>{
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);

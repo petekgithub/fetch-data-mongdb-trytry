@@ -11,7 +11,7 @@ import { useSignIn } from 'react-auth-kit';
 
 const LOGIN_URL = "http://localhost:5000/login";
 
-const Login = (props:any) => {
+const Login: React.FC = (props:any) => { 
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const signIn = useSignIn();
@@ -19,7 +19,7 @@ const Login = (props:any) => {
   const handleSubmit = async (values: any) => {
       console.log("values", values);
       setError("");
-//authState, infoof the user
+//authState, info of the user
       try {
         const response = await axios.post(LOGIN_URL, values);
         console.log("LOGIN_RESPONSE", response.data);

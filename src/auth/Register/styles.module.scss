@@ -1,108 +1,109 @@
- @import "Core/styles/index.scss";
-
- // html {
- //     font-family  : $font-family;
- //     font-size    : 22px;
- //     color        : $color-white;
- // }
-
- // body {
- //     min-height      : 100vh;
- //     background-color: $color-minty;
- // }
-
- // .App {
- //   @include flex(center, center, column );
- //   display   : flex;
- //   min-height: 100vh;
- //   padding   : 1rem 0.5rem;
- // }
-
- section {
-     @include flex(center, flex-start, column);
-     @include content(500px);
-     width: 100%;
-     max-width: 420px;
-     min-height: 400px;
-     padding: 1rem;
-     background-color: $color-firebrick;
-     font-family: $font-family;
-     font-size: 22px;
-     color: $color-white;
+@import "styles/index.scss";
 
 
-     form {
-         @include flex(null, space-evenly, column);
-         flex-grow: 1;
-         padding-bottom: 1rem;
+// html {
+//     font-family  : $font-family;
+//     font-size    : 22px;
+//     color        : $color-white;
+// }
 
-         a,
-         a:visited {
-             color: $color-white;
-         }
+// body {
+//     min-height      : 100vh;
+//     background-color: $color-minty;
+// }
 
-         input[type="text"],
-         input[type="password"],
-         button,
-         textarea {
-             font-family: $font-family;
-             font-size: 22px;
-             padding: 0.25rem;
-             border-radius: 0.5rem;
-         }
+// .App {
+//   @include flex(center, center, column );
+//   display   : flex;
+//   min-height: 100vh;
+//   padding   : 1rem 0.5rem;
+// }
 
-         label,
-         button {
-             margin-top: 1rem;
+section {
+    @include flex(center, flex-start, column);
+    @include content(500px);
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    padding: 1rem;
+    background-color: $color-firebrick;
+    font-family: $font-family;
+    font-size: 22px;
+    color: $color-white;
 
-             .hide {
-                 display: none;
-             }
 
-             .valid {
-                 color: $color-firebrick;
-                 margin-left: 0.25rem;
-             }
-         }
+    form {
+        @include flex(null, space-evenly, column);
+        flex-grow: 1;
+        padding-bottom: 1rem;
 
-         button {
-             padding: 0.5rem;
-         }
+        a,
+        a:visited {
+            color: $color-white;
+        }
 
-         .instructions {
-             font-size: 0.75rem;
-             border-radius: 0.5rem;
-             background: $color-black;
-             color: $color-white;
-             padding: 0.25rem;
-             position: absolute;
-             bottom: -10px;
-         }
+        input[type="text"],
+        input[type="password"],
+        button,
+        textarea {
+            font-family: $font-family;
+            font-size: 22px;
+            padding: 0.25rem;
+            border-radius: 0.5rem;
+        }
 
-         .instructions>svg {
-             margin-right: 0.25rem;
-         }
+        label,
+        button {
+            margin-top: 1rem;
 
-         .offscreen {
-             position: absolute;
-             left: -9999px;
-         }
+            .hide {
+                display: none;
+            }
 
-         .invalid {
-             color: $color-red;
-             margin-left: 0.25rem;
-         }
+            .valid {
+                color: $color-firebrick;
+                margin-left: 0.25rem;
+            }
+        }
 
-         .errmsg {
-             background-color: $color-lightpink;
-             color: $color-firebrick;
-             font-weight: bold;
-             padding: 0.5rem;
-             margin-bottom: 0.5rem;
-         }
+        button {
+            padding: 0.5rem;
+        }
 
-         .line {
-             display: inline-block;
-         }
-     }
- }
+        .instructions {
+            font-size: 0.75rem;
+            border-radius: 0.5rem;
+            background: $color-black;
+            color: $color-white;
+            padding: 0.25rem;
+            position: absolute;
+            bottom: -10px;
+        }
+
+        .instructions>svg {
+            margin-right: 0.25rem;
+        }
+
+        .offscreen {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .invalid {
+            color: $color-red;
+            margin-left: 0.25rem;
+        }
+
+        .errmsg {
+            background-color: $color-lightpink;
+            color: $color-firebrick;
+            font-weight: bold;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .line {
+            display: inline-block;
+        }
+    }
+}

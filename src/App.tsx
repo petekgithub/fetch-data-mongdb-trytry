@@ -1,10 +1,10 @@
 import React  from 'react';
 import { Routes, Route } from "react-router-dom";
 import Login from "auth/Login";
-import DetailView from "Screens/DetailView";
-import ListView from "Screens/ListView";
+import DetailView from "views/DetailView";
+import ListView from "views/ListView";
 import { RequireAuth } from 'react-auth-kit';
-import Home from 'Screens/Home';
+import Home from 'views/Home';
 
 const Root: React.FC = () => {
   // return (

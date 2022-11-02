@@ -2,7 +2,7 @@ import React from 'react';
 import { useSignOut } from 'react-auth-kit';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home: React.FC = () =>{
     const signOut = useSignOut();
     const navigate = useNavigate();
 

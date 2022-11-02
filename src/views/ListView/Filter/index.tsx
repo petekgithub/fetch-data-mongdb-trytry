@@ -1,8 +1,11 @@
 import React from 'react'
+import { Collapse } from 'antd';
+const { Panel } = Collapse;
 
-// expandacle react card  with search
+
 
 const Filter = () => {
+
   return (
     <div>
       <form>

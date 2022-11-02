@@ -4,16 +4,18 @@ import { useNavigate } from 'react-router';
 import { SearchOutlined, SyncOutlined } from '@ant-design/icons';
 import {useAuthHeader} from 'react-auth-kit'
 //import { message, Pagination } from 'antd';
-import DetailView from 'Screens/DetailView';
+import DetailView from 'views/DetailView';
 import axios from 'axios';
 import DataTable from "react-data-table-component";
 import { Button } from "@material-ui/core";
 import Filter from './Filter';
 import styles from "./styles.module.scss";
 import Pagination from './Pagination';
+import Collapsible from './Collapsible';
+import Content from './Filter/Content';
 
 
-const ListView = () => {
+const ListView: React.FC = () =>{
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -23,12 +25,12 @@ const ListView = () => {
 
   // const fetchOrganisations = async (page:any, size = perPage) => {
 
-//     const authHeader = useAuthHeader();
+  //     const authHeader = useAuthHeader();
 
 // console.log("AUTH_HEADER: ", authHeader);
   //   setLoading(true);
   //   const response = await axios.post(
-  //     //`http://localhost:5000/organisations?page=${page}&per_page=${size}&delay=1`,
+      //`http://localhost:5000/organisations?page=${page}&per_page=${size}&delay=1`,
   //     `http://localhost:5000/organisations/pagination`,
   //   {
 
@@ -49,8 +51,7 @@ const ListView = () => {
   //   fetchOrganisations(1);
   // }, [])
   
-  const columns = React.useMemo(
-    () => [
+  const columns = [
     { Header: "Name", accessor: 'name' },
     { Header: "EIN", accessor: 'ein' }, 
     { Header: "Description", accessor: 'description' },
@@ -63,9 +64,7 @@ const ListView = () => {
     { Header: "Zip", accessor: 'zip' },
     { Header: "Phone", accessor: 'phone' },
     { Header: "Email", accessor: 'email' },
-  ],
-  []
-  ) as any;
+  ];
 
   // const handlePageChange = (page:any)=> {
   //   //fetchOrganisations(page);
@@ -98,7 +97,10 @@ const ListView = () => {
       onSelectedRowsChange={({ selectedRows }) => console.log(selectedRows)}
     /> */}
     {/* <Filter /> */}
-    <Pagination />
+    {/* <Pagination /> */}
+    {/*    */}
+    <Content/>
+
     </>
     
   );
