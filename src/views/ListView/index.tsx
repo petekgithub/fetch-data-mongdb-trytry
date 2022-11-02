@@ -12,7 +12,6 @@ import Filter from './Filter';
 import styles from "./styles.module.scss";
 import Pagination from './Pagination';
 import Collapsible from './Collapsible';
-import Content from './Filter/Content';
 
 
 const ListView: React.FC = () =>{
@@ -51,20 +50,20 @@ const ListView: React.FC = () =>{
   //   fetchOrganisations(1);
   // }, [])
   
-  const columns = [
-    { Header: "Name", accessor: 'name' },
-    { Header: "EIN", accessor: 'ein' }, 
-    { Header: "Description", accessor: 'description' },
-    { Header: "Mission", accessor: 'mission' },
-    { Header: "State", accessor: 'state' },
-    { Header: "City", accessor: 'city' },
-    { Header: "Street", accessor: 'street' },
-    { Header: "AssetAmount", accessor: 'assetamount' },
-    { Header: "Website", accessor: 'website' },
-    { Header: "Zip", accessor: 'zip' },
-    { Header: "Phone", accessor: 'phone' },
-    { Header: "Email", accessor: 'email' },
-  ];
+  // const columns = [
+  //   { Header: "Name", accessor: 'name' },
+  //   { Header: "EIN", accessor: 'ein' }, 
+  //   { Header: "Description", accessor: 'description' },
+  //   { Header: "Mission", accessor: 'mission' },
+  //   { Header: "State", accessor: 'state' },
+  //   { Header: "City", accessor: 'city' },
+  //   { Header: "Street", accessor: 'street' },
+  //   { Header: "AssetAmount", accessor: 'assetamount' },
+  //   { Header: "Website", accessor: 'website' },
+  //   { Header: "Zip", accessor: 'zip' },
+  //   { Header: "Phone", accessor: 'phone' },
+  //   { Header: "Email", accessor: 'email' },
+  // ];
 
   // const handlePageChange = (page:any)=> {
   //   //fetchOrganisations(page);
@@ -99,10 +98,9 @@ const ListView: React.FC = () =>{
     {/* <Filter /> */}
     {/* <Pagination /> */}
     {/*    */}
-    <Content/>
-
+    <Collapsible />
     </>
     
-  );
+  ); 
 };
 export default ListView;
