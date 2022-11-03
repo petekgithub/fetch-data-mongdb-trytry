@@ -7,6 +7,7 @@ const DetailView: React.FC = () => {
     <div className={styles.container}>
       <h1>DetailView</h1>
       <p>Update parts will be here !!</p>
+      
     </div>
   )
 }

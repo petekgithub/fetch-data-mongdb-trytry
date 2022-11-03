@@ -1,73 +1,24 @@
-import React from 'react'
-import { Collapse } from 'antd';
-const { Panel } = Collapse;
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import styles from "./styles.module.scss";
+import { Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import Content from './Content';
 
+const Collapsible: React.FC = () =>{
+    const [isOpen,setIsOpen] = useState(false);
 
-
-const Filter = () => {
-
-  return (
-    <div>
-      <form>
-      <label htmlFor="username">Name</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">EIN</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">Description</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">Mission</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">ZIP</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">State</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">City</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">Street</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">Amount</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">Website</label>
-          <input
-            name="name"
-            type="text"
-          />
-      <label htmlFor="username">Phone</label>
-          <input
-            name="name"
-            type="text"
-      />
-      <button type="submit"> SEARCH </button>
-      </form>
-    </div>
-  )
+    return (
+      <div className={styles.collapsible}>
+          <Button 
+            type="primary" 
+            shape="circle" 
+            icon={<SearchOutlined />}
+            onClick={() => setIsOpen(!isOpen)}
+          ></Button>
+          {isOpen && <div className={styles.content} > <Content /> </div>}
+      </div>
+    )
 }
 
-export default Filter;
+export default Collapsible;

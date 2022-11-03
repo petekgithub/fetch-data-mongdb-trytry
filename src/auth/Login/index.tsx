@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 //import AuthContext from 'context/AuthProvider';
-import { Button } from "@material-ui/core";
+import { Button } from 'antd';
 import React from 'react';
 import styles from "./styles.module.scss";
 import axios, { AxiosError } from 'axios';
@@ -72,9 +72,9 @@ const Login: React.FC = (props:any) => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-            <Button className={styles.logInBtn} type="submit">
-              Log In
-            </Button>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
         </form>
       </div>
     </div>

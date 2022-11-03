@@ -23,6 +23,8 @@
         @include flex(null, space-evenly, column);
         flex-grow: 1;
         padding-bottom: 1rem;
+        color: $color-athensGray;
+
 
 
         input[type="text"],
@@ -33,6 +35,8 @@
             font-size: 25px;
             padding: 0.25rem;
             border-radius: 0.5rem;
+            color: $color-black;
+
         }
 
         label {
