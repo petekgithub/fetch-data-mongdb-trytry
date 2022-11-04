@@ -26,7 +26,7 @@ const Login: React.FC = (props:any) => {
        
         axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.token}`
         
-         navigate('/listview');
+        navigate('/listview');
         
         // react-auth-kit library: once responsde back, authentication is starts. Authenticate the user, save the credentials, save token, receive back login, 
       } catch (err) {

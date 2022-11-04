@@ -17,15 +17,18 @@ const Content = () => {
 
   const onSearch = () => {
     console.log("searching");
+    
     useEffect(() => {
-      const fetchOrganizationPosts = async () => {
+      const fetchOrganizationDatas = async () => {                                        
           setLoading(true);  // process on fetching
-          const res = await axios.get('http://localhost:5000/organisations/id', {data: {id: null}});
+          const res = await axios.get('http://localhost:5000/organisations');
           setPosts(res.data);
           setLoading(false);
       }
-      fetchOrganizationPosts();
+
+      fetchOrganizationDatas();
     }, []);
+
   };
 
   console.log(posts);
