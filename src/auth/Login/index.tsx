@@ -73,7 +73,7 @@ const Login: React.FC = (props:any) => {
             value={formik.values.password}
           />
           <Button type="primary" htmlType="submit">
-            Submit
+            Log In
           </Button>
         </form>
       </div>

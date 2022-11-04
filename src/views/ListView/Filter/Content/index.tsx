@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons';
 import { Select, Button, Row, Col, Form, Input, Divider, InputNumber } from 'antd';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Edit from 'views/DetailView/Edit';
 
 
 const Content = () => {
@@ -18,7 +20,7 @@ const Content = () => {
     useEffect(() => {
       const fetchOrganizationPosts = async () => {
           setLoading(true);  // process on fetching
-          const res = await axios.get('http://localhost:5000/organisations');
+          const res = await axios.get('http://localhost:5000/organisations/id', {data: {id: null}});
           setPosts(res.data);
           setLoading(false);
       }
@@ -26,7 +28,7 @@ const Content = () => {
     }, []);
   };
 
-  // console.log(posts);
+  console.log(posts);
 
   const onClear = () => {
     console.log("clearing");
@@ -88,6 +90,16 @@ const Content = () => {
             </Col>
             <Col span={12}>
               <Form.Item name="phone" label="Phone">
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item name="status" label="Status">
+                <Link to="/edit"><Edit /></Link> 
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item name="lastupdated" label="LastUpdated">
                 <Input />
               </Form.Item>
             </Col>
