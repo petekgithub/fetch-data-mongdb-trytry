@@ -1,110 +1,55 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Table } from "antd";
+import { MoreOutlined } from '@ant-design/icons';
+import { Button, Dropdown, Table, Menu } from 'antd';
 
-type EditableTableProps = Parameters<typeof Table>[0];
-type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
 
-const DataTableVis = () => {
 
-    const [gridData, setGridData] = useState([]);
-    const [loading, setLoading] = useState(false);
+const DataTableVis = ({ data = [], columns, actions, loading, rowKey = "_id" }) => {
 
-    useEffect(() => {
-        loadData();
-    }, []);
+    const pagination = {
+        showSizeChanger: true,
+        defaultPageSize: 20,
+        showTotal: (total: any, [start, end]: any) => `Showing ${start} - ${end} of ${total}`,
+      };
 
-    const loadData = async () => {
-        setLoading(true);
-        const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
-        setGridData(res.data);
-        setLoading(false);
-    }
-
-      const columns = [
-        {
-            align: "center",
-            title: "Name",
-            dataIndex: "name",
-            editTable: true
-        },
-        {
-            title: "EIN",
-            dataIndex: "ein",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Description",
-            dataIndex: "description",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Mission",
-            dataIndex: "mission",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "State",
-            dataIndex: "state",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "City",
-            dataIndex: "city",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Street",
-            dataIndex: "street",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "AssetAmount",
-            dataIndex: "assetAmount",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Website",
-            dataIndex: "website",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Zip",
-            dataIndex: "zip",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Phone",
-            dataIndex: "phone",
-            align: "center",
-            editTable: true
-        },
-        {
-            title: "Email",
-            dataIndex: "email",
-            align: "center",
-            editTable: true
-        },
-        
-      ];
 
     return (
-        <div>
-            <Table 
-                columns={columns as ColumnTypes}
-                bordered
-                loading={loading}
+        <div className="DataTable">
+        <Table loading={loading} dataSource={data} rowKey={rowKey} size="middle" pagination={pagination}>
+            {columns.map((x:any) => (
+            <Table.Column
+                title={x.title}
+                key={x.key}
+                dataIndex={x.key}
+                align={x.align}
+                render={x.render}
+                width={x.width}
             />
-        </div> 
+        ))}
+        <Table.Column
+          key="id"
+          title="Actions"
+          width={80}
+          align="center"
+          render={(_, x) => (
+            <Dropdown trigger="click" overlay={
+              <Menu>
+                {actions && actions.map(y => (
+                  <Menu.Item key={y.text}>
+                    <Button block size="small" type="text" icon={y.icon} onClick={() => y.onClick(x)} className="text-left">
+                      {y.text}
+                    </Button>
+                  </Menu.Item>
+                ))}
+              </Menu>
+            }>
+              <Button type="text" size="small" icon={<MoreOutlined />} />
+            </Dropdown>
+          )}
+        />
+      </Table>
+    </div>
     );
 };
 

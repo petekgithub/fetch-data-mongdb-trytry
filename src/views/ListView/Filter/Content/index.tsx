@@ -13,29 +13,31 @@ const Content = () => {
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [gridData, setGridData] = useState([]);
+
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    setLoading(true);
+    const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
+    setGridData(res.data);
+    setLoading(false);
+  }
+
 
 
   const onSearch = () => {
     console.log("searching");
-    
-    useEffect(() => {
-      const fetchOrganizationDatas = async () => {                                        
-          setLoading(true);  // process on fetching
-          const res = await axios.get('http://localhost:5000/organisations');
-          setPosts(res.data);
-          setLoading(false);
-      }
-
-      fetchOrganizationDatas();
-    }, []);
-
   };
 
-  console.log(posts);
 
   const onClear = () => {
     console.log("clearing");
   };
+
 
     return (
       <div>
