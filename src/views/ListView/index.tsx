@@ -9,7 +9,8 @@ import Filter from './Filter';
 import DataTable from 'components/DataTable';
 import { Button } from 'antd';
 import axios from 'axios';
-import OrganisationsTable from 'components/OrganisationsTable';
+import DataTableVis from 'components/DataTableVis';
+//import OrganisationsTable from 'components/OrganisationsTable';
 
 
 const ListView: React.FC = () =>{
@@ -29,7 +30,8 @@ const ListView: React.FC = () =>{
         <Link to='/detailview'> <Button> DetailView </Button></Link>
       </div> */}
         {/* <DataTable data={data} columns={columns} filter={filter} setFilter={setFilter} loading={loading} /> */}
-        <OrganisationsTable />
+        {/* <OrganisationsTable /> */}
+        <DataTableVis />
       </div>
   ); 
 };

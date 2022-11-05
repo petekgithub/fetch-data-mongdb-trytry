@@ -37,10 +37,11 @@ const OrganisationsTable = () => {
           { name: "Email", selector: (row: { email: string; }) => row.email },
         ];
   return (
-    <DataTable 
-        columns={{columns}: {columns : string} 
-        data={posts} 
-    />
+    <></>
+    // <DataTable 
+    //     columns={columns}
+    //     data={posts} 
+    // />
   )
 }
 
