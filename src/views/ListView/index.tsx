@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DetailView from 'views/DetailView';
 import styles from "./styles.module.scss";
@@ -19,6 +19,21 @@ type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
 const ListView: React.FC = () =>{
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [gridData, setGridData] = useState([]);
+
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    setLoading(true);
+    const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
+    setGridData(res.data);
+    setLoading(false);
+  };
+  console.log(gridData);
+
  
   const columns = [
     {
@@ -103,26 +118,30 @@ const ListView: React.FC = () =>{
   ];
 
   const onReset = (id: any) => {
-      ({ url: `http://localhost:5000/organisations/pagination${id}`}).then(() => {
-      message.success("Subscriber answers resetted successfully.");
-    });
+    // ({ url: `http://localhost:5000/organisations/pagination${id}` }.then(() => {
+    //   message.success("Subscriber answers resetted successfully.");
+    // }));
   };
   
   const actions = [
-    { icon: <SyncOutlined />, text: 'Reset Answers', onClick: (x) => onReset(x._id) },
-  ]
-
+    {
+      icon: <SyncOutlined />,
+      text: "Reset Answers",
+      onClick: (x:any) => onReset(x._id),
+    },
+  ];
     return (
       <div className="d-flex a-center mb-10">
         <Filter />
-        <div className="ml-auto">
+        {/* <div className="ml-auto">
           <Link to='/detailview'> <Button> DetailView </Button></Link>
-        </div> 
+        </div>  */}
         <DataTable 
           columns={columns as ColumnTypes}
-          data={<Filter />} 
+          data={[gridData]}
           actions={actions} 
           loading={loading}
+        //  rowKey = {}
         />
       </div>
     ); 

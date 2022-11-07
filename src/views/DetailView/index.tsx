@@ -23,12 +23,12 @@ const DetailView: React.FC = () => {
 
   return (
     <div className={styles.container}>
-       <h1>DetailView Page</h1>        {/*seperate page in 2 pieces with scss */}
+      <h1>DetailView Page</h1>        {/*seperate page in 2 pieces with scss */}
       <div className={styles.left}>
-          <AllScroll />
+        <AllScroll />
       </div>
       <div className={styles.right}>
-          <Edit />
+        <Edit />
       </div>
     </div>
   )

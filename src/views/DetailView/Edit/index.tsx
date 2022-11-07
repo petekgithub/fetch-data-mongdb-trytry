@@ -30,52 +30,52 @@ const Edit = () => {
                 </label>
             </p>
             <p>
-                 <label>Name: <input type="text" name="EIN"  onChange={changeData}>  
+                 <label>Eın: <input type="text" name="EIN"  onChange={changeData}>  
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="Description" onChange={changeData}>
+                <label>Description: <input type="text" name="Description" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="Mission" onChange={changeData}>
+                <label>Mission: <input type="text" name="Mission" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="ZIP" onChange={changeData}>
+                <label>ZIP: <input type="text" name="ZIP" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="State" onChange={changeData}>
+                <label>State: <input type="text" name="State" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="City" onChange={changeData}>
+                <label>City: <input type="text" name="City" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="Street" onChange={changeData}>
+                <label>Street: <input type="text" name="Street" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="Amount" onChange={changeData}>
+                <label>Amount: <input type="text" name="Amount" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="Website" onChange={changeData}>
+                <label>Website: <input type="text" name="Website" onChange={changeData}>
                 </input>
                 </label>
             </p>
             <p>
-                <label>Name: <input type="text" name="Phone" onChange={changeData}>
+                <label>Phone: <input type="text" name="Phone" onChange={changeData}>
                 </input>
                 </label>
             </p>

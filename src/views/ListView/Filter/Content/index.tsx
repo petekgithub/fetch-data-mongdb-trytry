@@ -15,19 +15,7 @@ const Content = () => {
   const [posts, setPosts] = useState([]);
   const [gridData, setGridData] = useState([]);
 
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    setLoading(true);
-    const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
-    setGridData(res.data);
-    setLoading(false);
-  }
-
-
+  
   const onSearch = () => {
     console.log("searching");
   };
