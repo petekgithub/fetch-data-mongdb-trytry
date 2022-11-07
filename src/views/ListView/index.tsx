@@ -1,14 +1,14 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import DetailView from 'views/DetailView';
 import styles from "./styles.module.scss";
 import Filter from './Filter';
 import axios from 'axios';
-import DataTableVis from 'components/DataTableVis';
-import { SearchOutlined, SyncOutlined } from '@ant-design/icons';
+import DataTable from 'components/DataTable';
+import { SyncOutlined } from '@ant-design/icons';
 import { Button, Table } from 'antd';
-import Content from './Filter/Content';
+import { message } from 'antd';
 
 
 
@@ -18,7 +18,7 @@ type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
 
 const ListView: React.FC = () =>{
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
  
   const columns = [
     {
@@ -93,11 +93,22 @@ const ListView: React.FC = () =>{
         align: "center",
         editTable: true
     },
+    {
+      title: "Status",
+      dataIndex: "status",
+      align: "center",
+      editTable: true
+    }
     
   ];
 
+  const onReset = (id: any) => {
+      ({ url: `http://localhost:5000/organisations/pagination${id}`}).then(() => {
+      message.success("Subscriber answers resetted successfully.");
+    });
+  };
+  
   const actions = [
-    { icon: <SearchOutlined />, text: 'Detail', onClick: (x) => history.push(`/subscriber/${x._id}`) },
     { icon: <SyncOutlined />, text: 'Reset Answers', onClick: (x) => onReset(x._id) },
   ]
 
@@ -107,9 +118,9 @@ const ListView: React.FC = () =>{
         <div className="ml-auto">
           <Link to='/detailview'> <Button> DetailView </Button></Link>
         </div> 
-        <DataTableVis  
+        <DataTable 
           columns={columns as ColumnTypes}
-          data={<Content />} 
+          data={<Filter />} 
           actions={actions} 
           loading={loading}
         />

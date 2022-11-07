@@ -28,7 +28,6 @@ const Content = () => {
   }
 
 
-
   const onSearch = () => {
     console.log("searching");
   };

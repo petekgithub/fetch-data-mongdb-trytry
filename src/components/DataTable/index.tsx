@@ -5,7 +5,7 @@ import { Button, Dropdown, Table, Menu } from 'antd';
 
 
 
-const DataTableVis = ({ data = [], columns, actions, loading, rowKey = "_id" }) => {
+const DataTable = ({ data = [], columns, actions, loading, rowKey = "_id" }) => {
 
     const pagination = {
         showSizeChanger: true,
@@ -53,4 +53,4 @@ const DataTableVis = ({ data = [], columns, actions, loading, rowKey = "_id" }) 
     );
 };
 
-export default DataTableVis;
+export default DataTable;
