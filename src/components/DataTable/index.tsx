@@ -26,37 +26,37 @@ const DataTable = ({ data = [], columns, actions, loading }: DataTableTypes) => 
         <div className="DataTable">
         {/* <Table loading={loading} dataSource={data} rowKey={rowKey} size="middle" pagination={pagination}> */}
         <Table loading={loading} dataSource={data} size="middle" pagination={pagination}>
-            {columns.map((x:any) => (
-            <Table.Column
-                title={x.title}
-                key={x.key}
-                dataIndex={x.key}
-                align={x.align}
-                render={x.render}
-                width={x.width}
-            />
-        ))}
-        <Table.Column
-          key="id"
-          title="Actions"
-          width={80}
-          align="center"
-          render={(_, x) => (
-            <Dropdown trigger={["click"]} overlay={
-              <Menu>
-                {actions && actions.map((y:any) => (
-                  <Menu.Item key={y.text}>
-                    <Button block size="small" type="text" icon={y.icon} onClick={() => y.onClick(x)} className="text-left">
-                      {y.text}
-                    </Button>
-                  </Menu.Item>
-                ))}
-              </Menu>
-            }>
-              <Button type="text" size="small" icon={<MoreOutlined />} />
-            </Dropdown>
-          )}
-        />
+          {columns.map((x:any) => (
+          <Table.Column
+              title={x.title}
+              key={x.key}
+              dataIndex={x.key}
+              align={x.align}
+              render={x.render}
+              width={x.width}
+          />
+          ))}
+          <Table.Column
+            key="id"
+            title="Actions"
+            width={80}
+            align="center"
+            render={(_, x) => (
+              <Dropdown trigger={["click"]} overlay={
+                <Menu>
+                  {actions && actions.map((y:any) => (
+                    <Menu.Item key={y.text}>
+                      <Button block size="small" type="text" icon={y.icon} onClick={() => y.onClick(x)} className="text-left">
+                        {y.text}
+                      </Button>
+                    </Menu.Item>
+                  ))}
+                </Menu>
+              }>
+                <Button type="text" size="small" icon={<MoreOutlined />} />
+              </Dropdown>
+            )}
+          />
       </Table>
     </div>
     );

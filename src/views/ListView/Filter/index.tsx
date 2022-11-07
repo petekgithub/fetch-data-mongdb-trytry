@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from "./styles.module.scss";
 import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import Content from './Content';
+import Search from './Search';
 
 const Collapsible: React.FC = () =>{
     const [isOpen,setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ const Collapsible: React.FC = () =>{
             icon={<SearchOutlined />}
             onClick={() => setIsOpen(!isOpen)}
           ></Button>
-          {isOpen && <div className={styles.content} > <Content /> </div>}
+          {isOpen && <div className={styles.content} > <Search /> </div>}
       </div>
     )
 }

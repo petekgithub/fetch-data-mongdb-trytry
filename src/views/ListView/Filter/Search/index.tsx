@@ -1,15 +1,14 @@
 
-// ---------------------  SEARCH AND FETCH RELATED DATA  -------------------
 
 import React, { useState, useEffect } from 'react';
 import { CloseOutlined, SearchOutlined } from '@ant-design/icons';
 import { Select, Button, Row, Col, Form, Input, Divider, InputNumber } from 'antd';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Edit from 'views/DetailView/Edit';
+//import Edit from 'views/DetailView/Edit';
 
 
-const Content = () => {
+const Search = () => {
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -85,11 +84,11 @@ const Content = () => {
                 <Input />
               </Form.Item>
             </Col>
-            <Col span={12}>
+            {/* <Col span={12}>
               <Form.Item name="status" label="Status">
                 <Link to="/edit"><Edit /></Link> 
               </Form.Item>
-            </Col>
+            </Col> */}
             <Col span={12}>
               <Form.Item name="lastupdated" label="LastUpdated">
                 <Input />
@@ -118,4 +117,4 @@ const Content = () => {
     )
 }
 
-export default Content;
+export default Search;

@@ -30,9 +30,10 @@ const ListView: React.FC = () =>{
     setLoading(true);
     const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
     setGridData(res.data);
+    console.log("res.data: ", res.data);
     setLoading(false);
   };
-  console.log(gridData);
+  
 
  
   const columns = [
@@ -109,25 +110,25 @@ const ListView: React.FC = () =>{
         editTable: true
     },
     {
-      title: "Status",
-      dataIndex: "status",
+      title: "Last Updated",
+      dataIndex: "updated",
       align: "center",
       editTable: true
     }
     
   ];
 
-  const onReset = (id: any) => {
+  const onEdit = (id: any) => {
     // ({ url: `http://localhost:5000/organisations/pagination${id}` }.then(() => {
-    //   message.success("Subscriber answers resetted successfully.");
+    //   message.success("editted successfully.");
     // }));
   };
   
   const actions = [
     {
       icon: <SyncOutlined />,
-      text: "Reset Answers",
-      onClick: (x:any) => onReset(x._id),
+      text: "Edit",
+      onClick: (x:any) => onEdit(x._id),
     },
   ];
     return (
