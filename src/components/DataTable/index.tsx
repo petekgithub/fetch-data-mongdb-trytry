@@ -25,7 +25,7 @@ const DataTable = ({ data = [], columns, actions, loading }: DataTableTypes) => 
     return (
         <div className="DataTable">
         {/* <Table loading={loading} dataSource={data} rowKey={rowKey} size="middle" pagination={pagination}> */}
-        <Table loading={loading} dataSource={data} size="middle" pagination={pagination}>
+        <Table loading={loading} dataSource={data} size="middle" pagination={pagination} columns={columns} >
           {columns.map((x:any) => (
           <Table.Column
               title={x.title}

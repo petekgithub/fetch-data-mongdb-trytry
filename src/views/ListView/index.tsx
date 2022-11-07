@@ -11,7 +11,6 @@ import { Button, Table } from 'antd';
 import { message } from 'antd';
 
 
-
 type EditableTableProps = Parameters<typeof Table>[0];
 type ColumnTypes = Exclude<EditableTableProps['columns'], undefined>;
 
@@ -29,89 +28,87 @@ const ListView: React.FC = () =>{
   const loadData = async () => {
     setLoading(true);
     const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
-    setGridData(res.data);
-    console.log("res.data: ", res.data);
-    setLoading(false);
+    setGridData(res.data.organisations);
+    setLoading(false);  
   };
   
 
- 
   const columns = [
     {
         align: "center",
         title: "Name",
-        dataIndex: "name",
+        dataIndex: "NAME",
         editTable: true
     },
     {
         title: "EIN",
-        dataIndex: "ein",
+        dataIndex: "EIN",
         align: "center",
         editTable: true
     },
     {
         title: "Description",
-        dataIndex: "description",
+        dataIndex: "DESCRIPTION",
         align: "center",
         editTable: true
     },
     {
         title: "Mission",
-        dataIndex: "mission",
+        dataIndex: "MISSION",
         align: "center",
         editTable: true
     },
     {
         title: "State",
-        dataIndex: "state",
+        dataIndex: "STATE",
         align: "center",
         editTable: true
     },
     {
         title: "City",
-        dataIndex: "city",
+        dataIndex: "CITY",
         align: "center",
         editTable: true
     },
     {
         title: "Street",
-        dataIndex: "street",
+        dataIndex: "STREET",
         align: "center",
         editTable: true
     },
     {
         title: "AssetAmount",
-        dataIndex: "assetAmount",
+        dataIndex: "ASSETAMOUNT",
         align: "center",
         editTable: true
     },
     {
         title: "Website",
-        dataIndex: "website",
+        dataIndex: "WEBSITE",
         align: "center",
         editTable: true
     },
     {
         title: "Zip",
-        dataIndex: "zip",
+        dataIndex: "ZIP",
         align: "center",
         editTable: true
     },
     {
         title: "Phone",
-        dataIndex: "phone",
+        dataIndex: "PHONE",
         align: "center",
         editTable: true
     },
     {
         title: "Email",
-        dataIndex: "email",
+        dataIndex: "EMAIL",
         align: "center",
         editTable: true
     },
     {
       title: "Last Updated",
-      dataIndex: "updated",
+      dataIndex: "UPDATED",
       align: "center",
       editTable: true
     }
@@ -123,6 +120,7 @@ const ListView: React.FC = () =>{
     //   message.success("editted successfully.");
     // }));
   };
+
   
   const actions = [
     {
@@ -139,12 +137,14 @@ const ListView: React.FC = () =>{
         </div>  */}
         <DataTable 
           columns={columns as ColumnTypes}
-          data={[gridData]}
+          data={gridData}
           actions={actions} 
           loading={loading}
         //  rowKey = {}
         />
       </div>
     ); 
+
+
 };
 export default ListView;
