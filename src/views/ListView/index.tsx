@@ -3,12 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import DetailView from 'views/DetailView';
 import styles from "./styles.module.scss";
-import Filter from './Filter';
 import axios from 'axios';
 import DataTable from 'components/DataTable';
 import { SyncOutlined } from '@ant-design/icons';
 import { Button, Table } from 'antd';
-import { message } from 'antd';
 
 
 type EditableTableProps = Parameters<typeof Table>[0];
@@ -20,7 +18,6 @@ const ListView: React.FC = () =>{
   const navigate = useNavigate();
   const [gridData, setGridData] = useState([]);
   const[query, setQuery] = useState("");
-
 
 
   useEffect(() => {
@@ -43,7 +40,6 @@ const ListView: React.FC = () =>{
       )
       );
   };
-
 
   const columns = [
     {
@@ -133,12 +129,12 @@ const ListView: React.FC = () =>{
     
   ];
 
-  const onEdit = (id: any) => {
+  const onEdit = (row: any) => {
+    console.log(row);
     // ({ url: `http://localhost:5000/organisations/pagination${id}` }.then(() => {
     //   message.success("editted successfully.");
     // }));
   };
-
   
   const actions = [
     {
@@ -149,33 +145,17 @@ const ListView: React.FC = () =>{
   ];
     return (
       <div className="d-flex a-center mb-10">
-        <Filter />
         {/* <div className="ml-auto">
           <Link to='/detailview'> <Button> DetailView </Button></Link>
         </div>  */}
-        {gridData 
-          ? 
-          <>
-            <DataTable 
-            columns={columns as ColumnTypes}
-            data={gridData}
-            actions={actions} 
-            loading={loading}
-            //rowKey = {}
-            />
-          </>
-          :
-          <>
-          <DataTable 
+        <DataTable
           columns={columns as ColumnTypes}
-          data={onSearch(gridData)}
-          actions={actions} 
+          data={gridData}
+          actions={actions}
           loading={loading}
           //rowKey = {}
-          />
-          </>
-        }
-      </div>
-    ); 
+        />
+    </div>
+  );
 };
 export default ListView;
