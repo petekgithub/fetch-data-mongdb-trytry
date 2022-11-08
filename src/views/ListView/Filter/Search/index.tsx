@@ -5,13 +5,16 @@ import axios from 'axios';
 import styles from "./styles.module.scss";
 
 
-const Search = ({ onSearch }: any) => {
+const Search = () => {
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [gridData, setGridData] = useState([]);
   const[filterInput, setFilterInput] = useState("");
   const [form] = Form.useForm();
+  const [filters, setFilters] = useState(null);
+
+
 
   const onClear = () => {
     form.resetFields();
@@ -28,15 +31,15 @@ const Search = ({ onSearch }: any) => {
   //   setLoading(false);  
   // };
   
-  // const onSearch = (rows: any[]) => {
-  //   const columns = rows[0] && Object.keys(rows[0])
-  //   return rows.filter(
-  //     (row) => 
-  //     columns.some(
-  //       (column: string | number) => row[column].toString().indexOf(filterInput) > -1 
-  //     )
-  //     );
-  // };
+  const onSearch = (rows: any[]) => {
+    const columns = rows[0] && Object.keys(rows[0])
+    return rows.filter(
+      (row) => 
+      columns.some(
+        (column: string | number) => row[column].toString().indexOf(filterInput) > -1 
+      )
+      );
+  };
 
 
 
@@ -108,10 +111,14 @@ const Search = ({ onSearch }: any) => {
               icon={<SearchOutlined />}
               htmlType="submit"
               className="ml-auto"
+              onClick={() => onSearch}
             >
               Search
             </Button>
-            <Button icon={<CloseOutlined />} onClick={onClear} className="ml-10">
+            <Button 
+              icon={<CloseOutlined />} 
+              onClick={onClear} 
+              className="ml-10">
               Clear
             </Button>
           </Col>

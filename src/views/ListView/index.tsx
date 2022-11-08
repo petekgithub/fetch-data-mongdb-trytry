@@ -6,7 +6,12 @@ import styles from "./styles.module.scss";
 import axios from 'axios';
 import DataTable from 'components/DataTable';
 import { SyncOutlined } from '@ant-design/icons';
-import { Button, Table } from 'antd';
+import { Button, Table, Collapse } from 'antd';
+import Search from './Filter/Search';
+const { Panel } = Collapse;
+
+
+
 
 
 type EditableTableProps = Parameters<typeof Table>[0];
@@ -18,11 +23,12 @@ const ListView: React.FC = () =>{
   const navigate = useNavigate();
   const [gridData, setGridData] = useState([]);
   const[query, setQuery] = useState("");
+  const [filters, setFilters] = useState(null);
 
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [filters]);
 
   const loadData = async () => {
     setLoading(true);
@@ -148,8 +154,15 @@ const ListView: React.FC = () =>{
         {/* <div className="ml-auto">
           <Link to='/detailview'> <Button> DetailView </Button></Link>
         </div>  */}
+        <Collapse defaultActiveKey={["1"]}>
+          <Panel header="filters" key="1">
+            <Search 
+            // onSearch={setFilters} 
+            /> 
+          </Panel>
+        </Collapse>
         <DataTable
-          columns={columns as ColumnTypes}
+          columns={columns}
           data={gridData}
           actions={actions}
           loading={loading}
