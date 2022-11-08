@@ -19,6 +19,8 @@ const ListView: React.FC = () =>{
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [gridData, setGridData] = useState([]);
+  const[query, setQuery] = useState("");
+
 
 
   useEffect(() => {
@@ -31,7 +33,17 @@ const ListView: React.FC = () =>{
     setGridData(res.data.organisations);
     setLoading(false);  
   };
-  
+
+  const onSearch = (rows: any[]) => {
+    const columns = rows[0] && Object.keys(rows[0])
+    return rows.filter(
+      (row) => 
+      columns.some(
+        (column: string | number) => row[column].toString().indexOf(query) > -1 
+      )
+      );
+  };
+
 
   const columns = [
     {
@@ -111,6 +123,12 @@ const ListView: React.FC = () =>{
       dataIndex: "UPDATED",
       align: "center",
       editTable: true
+    },
+    {
+      title: "Edit",
+      dataIndex: "EDIT",
+      align: "center",
+      editTable: true
     }
     
   ];
@@ -135,16 +153,29 @@ const ListView: React.FC = () =>{
         {/* <div className="ml-auto">
           <Link to='/detailview'> <Button> DetailView </Button></Link>
         </div>  */}
-        <DataTable 
+        {gridData 
+          ? 
+          <>
+            <DataTable 
+            columns={columns as ColumnTypes}
+            data={gridData}
+            actions={actions} 
+            loading={loading}
+            //rowKey = {}
+            />
+          </>
+          :
+          <>
+          <DataTable 
           columns={columns as ColumnTypes}
-          data={gridData}
+          data={onSearch(gridData)}
           actions={actions} 
           loading={loading}
-        //  rowKey = {}
-        />
+          //rowKey = {}
+          />
+          </>
+        }
       </div>
     ); 
-
-
 };
 export default ListView;

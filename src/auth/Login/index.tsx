@@ -72,7 +72,7 @@ const Login: React.FC = (props:any) => {
             onBlur={formik.handleBlur}
             value={formik.values.password}
           />
-          <Button type="primary" htmlType="submit">
+          <Button className={styles.logInBtn} type="primary" htmlType="submit">
             Log In
           </Button>
         </form>

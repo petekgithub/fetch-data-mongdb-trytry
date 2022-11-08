@@ -3,12 +3,13 @@
 
 .container {
     @include flex(center, center, column);
-    @include content(500px);
+    //@include content(500px);
     width: 40%;
     height: 65%;
     // max-width: 420px;
     // min-height: 400px;
-    padding: 1rem;
+    margin: 0 auto;
+    padding: 2rem;
     background-color: $color-black;
     font-family: $font-family;
     font-size: 22px;
@@ -16,7 +17,7 @@
 
     h1 {
         color: $color-athensGray;
-        font-size: 50px
+        font-size: 50px;
     }
 
     form {
@@ -45,10 +46,9 @@
     }
 
     .logInBtn {
-        padding: 1rem;
         width: 400px;
-        height: 40px;
-        border: none;
+        height: 60px;
+        border: 5px solid $color-black;
         margin-top: 20px;
         background-color: $color-green;
         color: $color-black;
@@ -56,9 +56,9 @@
         cursor: pointer;
     }
 
-    .errorMessage {
-        font-size: 12px;
-        color: $color-red;
-        margin-top: 10px;
-    }
+    // .errorMessage {
+    //     font-size: 12px;
+    //     color: $color-red;
+    //     margin-top: 10px;
+    // }
 }
