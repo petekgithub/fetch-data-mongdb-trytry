@@ -7,7 +7,6 @@ import { SyncOutlined } from '@ant-design/icons';
 import { Button, Table, Collapse } from 'antd';
 import Search from './Filter/Search';
 import Filter from './Filter';
-import { Navigate } from 'react-router-dom';
 
 
 
@@ -30,8 +29,30 @@ const ListView: React.FC = () =>{
   }, [filters]);
 
   const loadData = async () => {
+    console.log("filters:", filters);
+
+    let filter = {} 
+    if(filters) {
+      filter = Object.keys(filters).reduce((acc: any, key:any) => {
+        if(filters[key]) acc[key] = filters[key]
+        return acc;
+      }, {})
+    }
+
     setLoading(true);
-    const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null,});
+    const res = await axios.post('http://localhost:5000/organisations/pagination-filter', 
+    {
+      "data":  {
+      "limit": 10,
+      //"id": null,
+      "filters": {},
+      } 
+    }, {
+      "headers": {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibWFobXV0IiwiaWF0IjoxNjY4MDMwODEzLCJleHAiOjE2NjgxMTcyMTN9.-yEpzTnzBLLi4CiHM_okiR2mTK8zq_sFHaN44TT6ZtY"
+      }
+    }
+    );
     setGridData([...res.data.organisations]);
     setLoading(false);
   };
@@ -52,16 +73,16 @@ const ListView: React.FC = () =>{
   // console.log(gridData);
 
   const filterData = (values: any) => {
-    console.log("filterData Function Called");
-    console.log("rows",values);
-    const columns = Object.keys(values)
+    // console.log("filterData Function Called");
+    // console.log("rows",values);
+    // const columns = Object.keys(values)
 
-    setGridData((prev) => {
-      return prev.filter((item) => {
-          return columns.some((col) => item[col] === values[col])
-       })
-    })
-
+    // setGridData((prev) => {
+    //   return prev.filter((item) => {
+    //       return columns.some((col) => item[col] === values[col])
+    //    })
+    // })
+    console.log("values: ", values);
   };
 
   console.log("GridData: ", gridData);
@@ -150,15 +171,13 @@ const ListView: React.FC = () =>{
       dataIndex: "EDIT",
       align: "center",
       editTable: true
-    }
+    },
 
   ];
 
   const onEdit = (row: any) => {
     console.log(row);
-    // ({ url: `http://localhost:5000/organisations/pagination${id}` }.then(() => {
-    //   message.success("editted successfully.");
-    // }));
+    navigate('/dataview');
   };
 
   const actions = [
@@ -168,10 +187,6 @@ const ListView: React.FC = () =>{
       onClick: (x:any) => onEdit(x._id),
     },
   ];
-
-  // if (actions) {
-  //   return <Navigate to='/detailview'  />
-  // }
 
     return (
       <div className="d-flex a-center mb-10">
@@ -185,7 +200,7 @@ const ListView: React.FC = () =>{
             />
           </Panel>
         </Collapse> */}
-        <Filter filterData={filterData}/>
+        <Filter filterData={setFilters}/>
         <DataTable
           columns={columns}
           data={gridData}

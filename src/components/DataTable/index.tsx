@@ -33,13 +33,13 @@ const DataTable = ({
           dataSource={data} 
           size="middle" 
           pagination={pagination} 
-          columns={columns} 
+          //columns={columns} 
         >
           {columns.map((x:any) => (
             <Table.Column
               title={x.title}
               key={x.key}
-              dataIndex={x.key}
+              dataIndex={x.dataIndex}
               align={x.align}
               render={x.render}
               width={x.width}
