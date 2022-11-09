@@ -5,7 +5,7 @@ import axios from 'axios';
 import styles from "./styles.module.scss";
 
 
-const Search = () => {
+const Search = ({ filterData }: any) => {
   const [visible, setVisible] = useState(true);
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -15,95 +15,73 @@ const Search = () => {
   const [filters, setFilters] = useState(null);
 
 
-
   const onClear = () => {
     form.resetFields();
   };
 
-  // useEffect(() => {
-  //   searchFetchData();
-  // }, []);
-
-  // const searchFetchData = async () => {
-  //   setLoading(true);
-  //   const res = await axios.post('http://localhost:5000/organisations/pagination', {limit:10,id:null});
-  //   setGridData(res.data.organisations);
-  //   setLoading(false);  
-  // };
-  
-  const onSearch = (rows: any[]) => {
-    const columns = rows[0] && Object.keys(rows[0])
-    return rows.filter(
-      (row) => 
-      columns.some(
-        (column: string | number) => row[column].toString().indexOf(filterInput) > -1 
-      )
-      );
-  };
-
-
-
     return (
       <div>
-        <Form className={styles.form} form={form} onFinish={onSearch} layout="horizontal">
+        <Form className={styles.form} form={form} onFinish={(values: any) => {
+            console.log("Search Values: ", values)
+            filterData(values) }} layout="horizontal">
           <Row gutter={16}>
             <Col span={4}>
-              <Form.Item name="username" label="Name">
+              <Form.Item name="NAME" label="Name">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="ein" label="EIN">
+              <Form.Item name="EIN" label="EIN">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="description" label="Description">
+              <Form.Item name="DESCRIPTION" label="Description">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="mission" label="Mission">
+              <Form.Item name="MISSION" label="Mission">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="zip" label="ZIP">
+              <Form.Item name="ZIP" label="ZIP">
                   <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="state" label="State">
+              <Form.Item name="STATE" label="State">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="city" label="City">
+              <Form.Item name="CITY" label="City">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="street" label="Street">
+              <Form.Item name="STREET" label="Street">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="amount" label="Amount">
+              <Form.Item name="AMOUNT" label="Amount">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="website" label="Website">
+              <Form.Item name="WEBSITE" label="Website">
                 <Input />
               </Form.Item>
             </Col>
             <Col span={4}>
-              <Form.Item name="phone" label="Phone">
+              <Form.Item name="PHONE" label="Phone">
                 <Input />
               </Form.Item>
             </Col>
           </Row>
-        </Form>
+        
         <Divider />
         <Row>
           <Col>
@@ -111,7 +89,7 @@ const Search = () => {
               icon={<SearchOutlined />}
               htmlType="submit"
               className="ml-auto"
-              onClick={() => onSearch}
+              //onClick={filterData}
             >
               Search
             </Button>
@@ -123,6 +101,7 @@ const Search = () => {
             </Button>
           </Col>
         </Row>
+        </Form>
       </div>
     )
 }

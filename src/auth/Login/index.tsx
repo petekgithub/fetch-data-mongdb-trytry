@@ -36,7 +36,6 @@ const Login: React.FC = (props:any) => {
         console.log("Error :", err);
       }
   };
-  
 
   const formik = useFormik({
     initialValues: {

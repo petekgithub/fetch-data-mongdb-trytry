@@ -5,7 +5,7 @@ import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Search from './Search';
 
-const Collapsible: React.FC = () =>{
+const Filter = ({filterData} : any) =>{
     const [isOpen,setIsOpen] = useState(false);
 
     return (
@@ -16,9 +16,14 @@ const Collapsible: React.FC = () =>{
             icon={<SearchOutlined />}
             onClick={() => setIsOpen(!isOpen)}
           ></Button>
-          {isOpen && <div className={styles.content} > <Search /> </div>}
+          {isOpen && (
+            <div className={styles.content}>
+              {" "}
+              <Search filterData={filterData} />{" "} 
+            </div>
+            )}
       </div>
-    )
-}
+    );
+};
 
-export default Collapsible;
+export default Filter;

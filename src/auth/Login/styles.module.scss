@@ -4,10 +4,10 @@
 .container {
     @include flex(center, center, column);
     //@include content(500px);
-    width: 40%;
+    width: 60%;
+    max-width: 500px;
     height: 65%;
-    // max-width: 420px;
-    // min-height: 400px;
+    max-height: 500px;
     margin: 0 auto;
     padding: 2rem;
     background-color: $color-black;
@@ -20,13 +20,17 @@
         font-size: 50px;
     }
 
+    border-radius: 20px;
+    box-shadow: 2px 2px 10px rgb(103, 103, 103);
+
     form {
         @include flex(null, space-evenly, column);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
         flex-grow: 1;
         padding-bottom: 1rem;
         color: $color-athensGray;
-
-
 
         input[type="text"],
         input[type="password"],
@@ -54,6 +58,8 @@
         color: $color-black;
         font-weight: bold;
         cursor: pointer;
+        border-radius: 20px;
+        box-shadow: 2px 2px 10px rgb(103, 103, 103);
     }
 
     // .errorMessage {

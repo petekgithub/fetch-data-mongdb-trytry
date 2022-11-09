@@ -33,7 +33,7 @@ const DataTable = ({
           dataSource={data} 
           size="middle" 
           pagination={pagination} 
-          //columns={columns} 
+          columns={columns} 
         >
           {columns.map((x:any) => (
             <Table.Column
@@ -51,7 +51,7 @@ const DataTable = ({
               key={i}
               render={(_:any, record: any) => (
                 <Button size="middle" onClick={() => action.onClick(record)}>
-                  {action.text}
+                  {action.text} 
                 </Button>
                )}
                />
